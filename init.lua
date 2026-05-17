@@ -245,6 +245,15 @@ do
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function() vim.hl.on_yank() end,
   })
+
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    desc = 'Transparent background for all themes',
+    pattern = '*',
+    callback = function ()
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NonText', { bg = 'none' })
+    end
+  })
 end
 
 -- ============================================================
@@ -394,7 +403,7 @@ do
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'ryoku-shell'
+  vim.cmd.colorscheme 'catppuccin'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
